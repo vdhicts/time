@@ -1,0 +1,36 @@
+{
+  "name": "vdhicts/dicms-time",
+  "description": "A time value object",
+  "homepage": "https://github.com/vdhicts/dicms-time",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "D. van der Heiden",
+      "email": "info@vdhicts.nl",
+      "homepage": "http://www.vdhicts.nl",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Vdhicts\\Dicms\\Time\\": "src/"
+    }
+  },
+  "autoload-dev": {
+     "psr-4": {
+      "Vdhicts\\Dicms\\Time\\Test\\": "tests/"
+    }
+  },
+  "require": {
+    "php" : "^7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
