@@ -1,4 +1,4 @@
-# Dicms-time
+# Time
 
 This package contains a time value-object and a range helper which can be used when working with times (no dates 
 required) in PHP.
@@ -11,7 +11,7 @@ This package requires PHP 7.1+.
 
 You can install the package via composer:
 
-`composer require vdhicts/dicms-time`
+`composer require vdhicts/time`
 
 ## Usage
 
