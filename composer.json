@@ -1,6 +1,6 @@
 {
   "name": "vdhicts/time",
-  "description": "A time value object",
+  "description": "Time value-object, collection and a range helper useful when working with times",
   "homepage": "https://github.com/vdhicts/time",
   "license": "MIT",
   "authors": [
