@@ -1,7 +1,7 @@
 {
-  "name": "vdhicts/dicms-time",
+  "name": "vdhicts/time",
   "description": "A time value object",
-  "homepage": "https://github.com/vdhicts/dicms-time",
+  "homepage": "https://github.com/vdhicts/time",
   "license": "MIT",
   "authors": [
     {
