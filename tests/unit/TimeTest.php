@@ -122,4 +122,20 @@ class TimeTest extends TestCase
         $this->assertSame($minutes, $time->getMinutes());
         $this->assertSame($seconds, $time->getSeconds());
     }
+
+    public function testShow()
+    {
+        $hours = 14;
+        $minutes = 30;
+        $seconds = 15;
+
+        $time = new Time($hours, $minutes, $seconds);
+
+        $this->assertSame('', $time->show(false, false, false));
+        $this->assertSame((string)$hours, $time->show(true, false, false));
+        $this->assertSame((string)$minutes, $time->show(false, true, false));
+        $this->assertSame((string)$seconds, $time->show(false, false, true));
+        $this->assertSame(sprintf('%s:%s', $hours, $minutes), $time->show(true, true, false));
+        $this->assertSame(sprintf('%s:%s:%s', $hours, $minutes, $seconds), $time->show(true, true, true));
+    }
 }

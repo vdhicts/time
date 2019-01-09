@@ -60,12 +60,8 @@ class TimeRange implements Contracts\TimeRange
      */
     public function isTimeInRange(Contracts\Time $time): bool
     {
-        $startIsAfterOrEqualTo = $this
-            ->start
-            ->isAfterOrEqualTo($time);
-        $endIsBeforeOrEqualTo = $this
-            ->end
-            ->isBeforeOrEqualTo($time);
+        $startIsAfterOrEqualTo = $time->isAfterOrEqualTo($this->start);
+        $endIsBeforeOrEqualTo = $time->isBeforeOrEqualTo($this->end);
 
         return ($startIsAfterOrEqualTo && $endIsBeforeOrEqualTo);
     }

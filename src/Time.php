@@ -229,6 +229,30 @@ class Time implements Contracts\Time
         return str_pad((string)$value, 2, '0', STR_PAD_LEFT);
     }
 
+    /**
+     * Returns the textual presentation of the time.
+     *
+     * @param bool $hours
+     * @param bool $minutes
+     * @param bool $seconds
+     * @return string
+     */
+    public function show(bool $hours = true, bool $minutes = true, bool $seconds = false): string
+    {
+        $parts = [];
+        if ($hours) {
+            $parts[] = $this->padTime($this->getHours());
+        }
+        if ($minutes) {
+            $parts[] = $this->padTime($this->getMinutes());
+        }
+        if ($seconds) {
+            $parts[] = $this->padTime($this->getSeconds());
+        }
+
+        return implode(':', $parts);
+    }
+
     /***
      * Returns the textual presentation of the time.
      *
