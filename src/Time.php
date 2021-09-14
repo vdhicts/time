@@ -7,33 +7,11 @@ use Vdhicts\Dicms\Time\Exceptions\TimeException;
 
 class Time implements Contracts\Time
 {
-    /**
-     * Holds the hours.
-     *
-     * @var int
-     */
-    private $hours = 0;
+    private int $hours = 0;
+    private int $minutes = 0;
+    private int $seconds = 0;
 
     /**
-     * Holds the minutes.
-     *
-     * @var int
-     */
-    private $minutes = 0;
-
-    /**
-     * Holds the seconds.
-     *
-     * @var int
-     */
-    private $seconds = 0;
-
-    /**
-     * Time constructor.
-     *
-     * @param int $hours
-     * @param int $minutes
-     * @param int $seconds
      * @throws TimeException
      */
     public function __construct(int $hours = 0, int $minutes = 0, int $seconds = 0)
@@ -44,10 +22,6 @@ class Time implements Contracts\Time
     }
 
     /**
-     * Creates a time value object from a textual presentation like 14:30:15.
-     *
-     * @param string $value
-     * @return Time
      * @throws TimeException
      */
     public static function createFromString(string $value): self
@@ -61,10 +35,6 @@ class Time implements Contracts\Time
     }
 
     /**
-     * Creates a time value object from a timestamp.
-     *
-     * @param int $timestamp
-     * @return Time
      * @throws TimeException
      */
     public static function createFromTimestamp(int $timestamp): self
@@ -79,21 +49,12 @@ class Time implements Contracts\Time
             ->setSeconds($seconds);
     }
 
-    /**
-     * Returns the hours.
-     *
-     * @return int
-     */
     public function getHours(): int
     {
         return $this->hours;
     }
 
     /**
-     * Stores the hours.
-     *
-     * @param int $hours
-     * @return Time
      * @throws TimeException
      */
     public function setHours(int $hours): self
@@ -107,21 +68,12 @@ class Time implements Contracts\Time
         return $this;
     }
 
-    /**
-     * Returns the minutes.
-     *
-     * @return int
-     */
     public function getMinutes(): int
     {
         return $this->minutes;
     }
 
     /**
-     * Stores the minutes.
-     *
-     * @param int $minutes
-     * @return Time
      * @throws TimeException
      */
     public function setMinutes(int $minutes): self
@@ -135,21 +87,12 @@ class Time implements Contracts\Time
         return $this;
     }
 
-    /**
-     * Returns the seconds.
-     *
-     * @return int
-     */
     public function getSeconds(): int
     {
         return $this->seconds;
     }
 
     /**
-     * Stores the seconds.
-     *
-     * @param int $seconds
-     * @return Time
      * @throws TimeException
      */
     public function setSeconds(int $seconds): self
@@ -163,56 +106,26 @@ class Time implements Contracts\Time
         return $this;
     }
 
-    /**
-     * Determines if this time is equal to the provided time.
-     *
-     * @param Contracts\Time $time
-     * @return bool
-     */
     public function isEqualTo(Contracts\Time $time): bool
     {
         return $this->toString() === $time->toString();
     }
 
-    /**
-     * Determines if this time is before teh provided time.
-     *
-     * @param Contracts\Time $time
-     * @return bool
-     */
     public function isBefore(Contracts\Time $time): bool
     {
         return strtotime($this->toString()) < strtotime($time->toString());
     }
 
-    /**
-     * Determines if this time is before or equal to the provided time.
-     *
-     * @param Contracts\Time $time
-     * @return bool
-     */
     public function isBeforeOrEqualTo(Contracts\Time $time): bool
     {
         return $this->isEqualTo($time) || $this->isBefore($time);
     }
 
-    /**
-     * Determines if this time is after the provided time.
-     *
-     * @param Contracts\Time $time
-     * @return bool
-     */
     public function isAfter(Contracts\Time $time): bool
     {
         return strtotime($this->toString()) > strtotime($time->toString());
     }
 
-    /**
-     * Determines if this time is after or equal to the provided time.
-     *
-     * @param Contracts\Time $time
-     * @return bool
-     */
     public function isAfterOrEqualTo(Contracts\Time $time): bool
     {
         return $this->isEqualTo($time) || $this->isAfter($time);
@@ -220,9 +133,6 @@ class Time implements Contracts\Time
 
     /**
      * Returns the time part padded with zeros.
-     *
-     * @param $value
-     * @return string
      */
     private function padTime(int $value): string
     {
@@ -231,11 +141,6 @@ class Time implements Contracts\Time
 
     /**
      * Returns the textual presentation of the time.
-     *
-     * @param bool $hours
-     * @param bool $minutes
-     * @param bool $seconds
-     * @return string
      */
     public function show(bool $hours = true, bool $minutes = true, bool $seconds = false): string
     {
@@ -253,11 +158,6 @@ class Time implements Contracts\Time
         return implode(':', $parts);
     }
 
-    /***
-     * Returns the textual presentation of the time.
-     *
-     * @return string
-     */
     public function toString(): string
     {
         return sprintf(
@@ -268,11 +168,6 @@ class Time implements Contracts\Time
         );
     }
 
-    /**
-     * Returns the textual presentation of the time.
-     *
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->toString();

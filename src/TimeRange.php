@@ -6,47 +6,20 @@ use Vdhicts\Dicms\Time\Contracts;
 
 class TimeRange implements Contracts\TimeRange
 {
-    /**
-     * Holds the start time of the range.
-     *
-     * @var Contracts\Time
-     */
-    private $start;
+    private Contracts\Time $start;
+    private Contracts\Time $end;
 
-    /**
-     * Holds the end time of the range.
-     *
-     * @var Contracts\Time
-     */
-    private $end;
-
-    /**
-     * TimeRange constructor.
-     *
-     * @param Contracts\Time $start
-     * @param Contracts\Time $end
-     */
     public function __construct(Contracts\Time $start, Contracts\Time $end)
     {
         $this->start = $start;
         $this->end = $end;
     }
 
-    /**
-     * Returns the start time of the range.
-     *
-     * @return Contracts\Time
-     */
     public function getStart(): Contracts\Time
     {
         return $this->start;
     }
 
-    /**
-     * Returns the end time of the range.
-     *
-     * @return Contracts\Time
-     */
     public function getEnd(): Contracts\Time
     {
         return $this->end;
@@ -54,9 +27,6 @@ class TimeRange implements Contracts\TimeRange
 
     /**
      * Determines if the time is in between or equals to the start and end of this time range.
-     *
-     * @param Contracts\Time $time
-     * @return bool
      */
     public function isTimeInRange(Contracts\Time $time): bool
     {
@@ -68,9 +38,6 @@ class TimeRange implements Contracts\TimeRange
 
     /**
      * Determine if the time ranges are overlapping each other.
-     *
-     * @param Contracts\TimeRange $timeRange
-     * @return bool
      */
     public function isTimeRangeOverlapping(Contracts\TimeRange $timeRange): bool
     {
