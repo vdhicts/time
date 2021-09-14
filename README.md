@@ -5,7 +5,7 @@ required) in PHP.
 
 ## Requirements
 
-This package requires PHP 7.1+.
+This package requires PHP 7.4+.
 
 ## Installation
 
@@ -81,7 +81,7 @@ $timeRange->isTimeRangeOverlapping($anotherTimeRange);
 
 Full code coverage unit tests are available in the tests folder. Run via phpunit:
 
-`vendor\bin\phpunit` 
+`vendor\bin\phpunit` or `composer test`
 
 By default a coverage report will be generated in the build/coverage folder.
 
@@ -92,8 +92,8 @@ per feature. In exchange you will be credited as contributor on this page.
 
 ## Security
 
-If you discover any security related issues in this or other packages of Vdhicts, please email info@vdhicts.nl instead
-of using the issue tracker.
+If you discover any security related issues in this or other packages of Vdhicts, please email security@vdhicts.nl 
+instead of using the issue tracker.
 
 ## License
 
@@ -101,5 +101,5 @@ This package is open-sourced software licensed under the [MIT license](http://op
 
 ## About vdhicts
 
-Van der Heiden ICT services is the name of my personal company. Van der Heiden ICT services develops and implements IT 
-solutions for businesses and educational institutions.
+[Vdhicts](https://www.vdhicts.nl) is the name of my personal company. Vdhicts develops and implements IT solutions for
+businesses and educational institutions.
