@@ -2,12 +2,10 @@
 
 namespace Vdhicts\Dicms\Time\Exceptions;
 
-class TimeException extends TimePackageException
+use Exception;
+
+class TimeException extends Exception
 {
-    /**
-     * @param string $value
-     * @return TimeException
-     */
     public static function unableToCreateFromString(string $value): self
     {
         return new self(
@@ -15,10 +13,6 @@ class TimeException extends TimePackageException
         );
     }
 
-    /**
-     * @param int $hours
-     * @return TimeException
-     */
     public static function invalidHours(int $hours): self
     {
         return new self(
@@ -26,10 +20,6 @@ class TimeException extends TimePackageException
         );
     }
 
-    /**
-     * @param int $minutes
-     * @return TimeException
-     */
     public static function invalidMinutes(int $minutes): self
     {
         return new self(
@@ -37,10 +27,6 @@ class TimeException extends TimePackageException
         );
     }
 
-    /**
-     * @param int $seconds
-     * @return TimeException
-     */
     public static function invalidSeconds(int $seconds): self
     {
         return new self(
