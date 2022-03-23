@@ -153,7 +153,7 @@ class TimeTest extends TestCase
         $this->assertSame('02:21:30', $time->roundDown(15, true)->toString());
     }
 
-    public function testDifference()
+    public function testDifference(): void
     {
         $timeStart = new Time(10, 30);
         $timeEnd = new Time(14);
