@@ -1,26 +1,26 @@
 <?php
 
-namespace Vdhicts\Dicms\Time;
+namespace Vdhicts\Time;
 
-use Vdhicts\Dicms\Time\Contracts;
+use Vdhicts\Time\Contracts;
 
-class TimeRange implements Contracts\TimeRange
+class TimeRange implements Contracts\TimeRangeInterface
 {
-    private Contracts\Time $start;
-    private Contracts\Time $end;
+    private Contracts\TimeInterface $start;
+    private Contracts\TimeInterface $end;
 
-    public function __construct(Contracts\Time $start, Contracts\Time $end)
+    public function __construct(Contracts\TimeInterface $start, Contracts\TimeInterface $end)
     {
         $this->start = $start;
         $this->end = $end;
     }
 
-    public function getStart(): Contracts\Time
+    public function getStart(): Contracts\TimeInterface
     {
         return $this->start;
     }
 
-    public function getEnd(): Contracts\Time
+    public function getEnd(): Contracts\TimeInterface
     {
         return $this->end;
     }
@@ -28,7 +28,7 @@ class TimeRange implements Contracts\TimeRange
     /**
      * Determines if the time is in between or equals to the start and end of this time range.
      */
-    public function isTimeInRange(Contracts\Time $time): bool
+    public function inRange(Contracts\TimeInterface $time): bool
     {
         $startIsAfterOrEqualTo = $time->isAfterOrEqualTo($this->start);
         $endIsBeforeOrEqualTo = $time->isBeforeOrEqualTo($this->end);
@@ -39,7 +39,7 @@ class TimeRange implements Contracts\TimeRange
     /**
      * Determine if the time ranges are overlapping each other.
      */
-    public function isTimeRangeOverlapping(Contracts\TimeRange $timeRange): bool
+    public function isOverlapping(Contracts\TimeRangeInterface $timeRange): bool
     {
         $startIsBeforeOrEqualToEnd = $this
             ->getStart()

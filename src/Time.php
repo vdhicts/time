@@ -1,12 +1,25 @@
 <?php
 
-namespace Vdhicts\Dicms\Time;
+namespace Vdhicts\Time;
 
-use Vdhicts\Dicms\Time\Contracts;
-use Vdhicts\Dicms\Time\Exceptions\TimeException;
+use Vdhicts\Time\Contracts\TimeInterface;
+use Vdhicts\Time\Exceptions\TimeException;
+use Vdhicts\Time\Traits\Cloneable;
+use Vdhicts\Time\Traits\Comparison;
+use Vdhicts\Time\Traits\Conversion;
+use Vdhicts\Time\Traits\Difference;
+use Vdhicts\Time\Traits\Duration;
+use Vdhicts\Time\Traits\Rounding;
 
-class Time implements Contracts\Time
+class Time implements TimeInterface
 {
+    use Cloneable;
+    use Comparison;
+    use Conversion;
+    use Difference;
+    use Duration;
+    use Rounding;
+
     private int $hours = 0;
     private int $minutes = 0;
     private int $seconds = 0;
@@ -19,34 +32,6 @@ class Time implements Contracts\Time
         $this->setHours($hours);
         $this->setMinutes($minutes);
         $this->setSeconds($seconds);
-    }
-
-    /**
-     * @throws TimeException
-     */
-    public static function createFromString(string $value): self
-    {
-        $timestamp = strtotime($value);
-        if (! $timestamp) {
-            throw TimeException::unableToCreateFromString($value);
-        }
-
-        return self::createFromTimestamp($timestamp);
-    }
-
-    /**
-     * @throws TimeException
-     */
-    public static function createFromTimestamp(int $timestamp): self
-    {
-        $hours = (int)date('H', $timestamp);
-        $minutes = (int)date('i', $timestamp);
-        $seconds = (int)date('s', $timestamp);
-
-        return (new self())
-            ->setHours($hours)
-            ->setMinutes($minutes)
-            ->setSeconds($seconds);
     }
 
     public function getHours(): int
@@ -104,72 +89,5 @@ class Time implements Contracts\Time
         $this->seconds = $seconds;
 
         return $this;
-    }
-
-    public function isEqualTo(Contracts\Time $time): bool
-    {
-        return $this->toString() === $time->toString();
-    }
-
-    public function isBefore(Contracts\Time $time): bool
-    {
-        return strtotime($this->toString()) < strtotime($time->toString());
-    }
-
-    public function isBeforeOrEqualTo(Contracts\Time $time): bool
-    {
-        return $this->isEqualTo($time) || $this->isBefore($time);
-    }
-
-    public function isAfter(Contracts\Time $time): bool
-    {
-        return strtotime($this->toString()) > strtotime($time->toString());
-    }
-
-    public function isAfterOrEqualTo(Contracts\Time $time): bool
-    {
-        return $this->isEqualTo($time) || $this->isAfter($time);
-    }
-
-    /**
-     * Returns the time part padded with zeros.
-     */
-    private function padTime(int $value): string
-    {
-        return str_pad((string)$value, 2, '0', STR_PAD_LEFT);
-    }
-
-    /**
-     * Returns the textual presentation of the time.
-     */
-    public function show(bool $hours = true, bool $minutes = true, bool $seconds = false): string
-    {
-        $parts = [];
-        if ($hours) {
-            $parts[] = $this->padTime($this->getHours());
-        }
-        if ($minutes) {
-            $parts[] = $this->padTime($this->getMinutes());
-        }
-        if ($seconds) {
-            $parts[] = $this->padTime($this->getSeconds());
-        }
-
-        return implode(':', $parts);
-    }
-
-    public function toString(): string
-    {
-        return sprintf(
-            '%s:%s:%s',
-            $this->padTime($this->getHours()),
-            $this->padTime($this->getMinutes()),
-            $this->padTime($this->getSeconds())
-        );
-    }
-
-    public function __toString(): string
-    {
-        return $this->toString();
     }
 }

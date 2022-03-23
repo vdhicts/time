@@ -1,19 +1,19 @@
 <?php
 
-namespace Vdhicts\Dicms\Time\Tests\Unit;
+namespace Vdhicts\Time\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Vdhicts\Dicms\Time\Time;
-use Vdhicts\Dicms\Time\TimeRange;
+use Vdhicts\Time\Time;
+use Vdhicts\Time\TimeRange;
 
 class TimeRangeTest extends TestCase
 {
-    public function testClassExists()
+    public function testClassExists(): void
     {
         $this->assertTrue(class_exists(TimeRange::class));
     }
 
-    public function testInitialisation()
+    public function testInitialisation(): void
     {
         $time = new Time(10);
         $anotherTime = new Time(17);
@@ -22,7 +22,7 @@ class TimeRangeTest extends TestCase
         $this->assertInstanceOf(TimeRange::class, $timeRange);
     }
 
-    public function testGetters()
+    public function testGetters(): void
     {
         $time = new Time(10);
         $anotherTime = new Time(17);
@@ -32,7 +32,7 @@ class TimeRangeTest extends TestCase
         $this->assertSame($anotherTime->toString(), $timeRange->getEnd()->toString());
     }
 
-    public function testInTimeRange()
+    public function testInTimeRange(): void
     {
         $time = new Time(10);
         $anotherTime = new Time(17);
@@ -41,11 +41,11 @@ class TimeRangeTest extends TestCase
         $timeInRange = new Time(15, 30, 30);
         $timeNotInRange = new Time(18);
 
-        $this->assertTrue($timeRange->isTimeInRange($timeInRange));
-        $this->assertFalse($timeRange->isTimeInRange($timeNotInRange));
+        $this->assertTrue($timeRange->inRange($timeInRange));
+        $this->assertFalse($timeRange->inRange($timeNotInRange));
     }
 
-    public function testRangeOverlapping()
+    public function testRangeOverlapping(): void
     {
         $firstStartTime = new Time(10, 15, 15);
         $firstEndTime = new Time(17, 45, 45);
@@ -55,14 +55,14 @@ class TimeRangeTest extends TestCase
         $secondEndTime = new Time(20, 15, 15);
         $secondTimeRange = new TimeRange($secondStartTime, $secondEndTime);
 
-        $this->assertTrue($firstTimeRange->isTimeRangeOverlapping($secondTimeRange));
-        $this->assertTrue($secondTimeRange->isTimeRangeOverlapping($firstTimeRange));
+        $this->assertTrue($firstTimeRange->isOverlapping($secondTimeRange));
+        $this->assertTrue($secondTimeRange->isOverlapping($firstTimeRange));
 
         $thirdStartTime = new Time(17, 50, 30);
         $thirdEndTime = new Time(23, 30, 30);
         $thirdTimeRange = new TimeRange($thirdStartTime, $thirdEndTime);
 
-        $this->assertFalse($firstTimeRange->isTimeRangeOverlapping($thirdTimeRange));
-        $this->assertTrue($secondTimeRange->isTimeRangeOverlapping($thirdTimeRange));
+        $this->assertFalse($firstTimeRange->isOverlapping($thirdTimeRange));
+        $this->assertTrue($secondTimeRange->isOverlapping($thirdTimeRange));
     }
 }
