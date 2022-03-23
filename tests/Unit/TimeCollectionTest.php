@@ -1,19 +1,19 @@
 <?php
 
-namespace Vdhicts\Dicms\Time\Tests\Unit;
+namespace Vdhicts\Time\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Vdhicts\Dicms\Time\Time;
-use Vdhicts\Dicms\Time\TimeCollection;
+use Vdhicts\Time\Time;
+use Vdhicts\Time\TimeCollection;
 
-class TimeCollectionTestTest extends TestCase
+class TimeCollectionTest extends TestCase
 {
-    public function testClassExists()
+    public function testClassExists(): void
     {
         $this->assertTrue(class_exists(TimeCollection::class));
     }
 
-    public function testInitialisation()
+    public function testInitialisation(): void
     {
         $collection = new TimeCollection();
 
@@ -29,7 +29,7 @@ class TimeCollectionTestTest extends TestCase
         $this->assertInstanceOf(TimeCollection::class, $collection);
     }
 
-    public function testContains()
+    public function testContains(): void
     {
         $time = new Time(14, 30, 15);
         $anotherTime = new Time(16, 50, 45);

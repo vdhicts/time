@@ -1,6 +1,6 @@
 <?php
 
-namespace Vdhicts\Dicms\Time\Exceptions;
+namespace Vdhicts\Time\Exceptions;
 
 use Exception;
 
