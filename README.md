@@ -46,7 +46,17 @@ string `(string)$time`. This will output: `14:30:15`. You are also able to show 
 
 #### Difference
 
-To calculate the difference between time objects
+The time object can also be used to calculate the difference between time objects:
+
+```php
+$timeStart = new Time(10, 30);
+$timeEnd = new Time(14);
+
+$timeStart->diffInHours($timeEnd); // 3.5
+$timeEnd->diffInHours($timeStart); // -3.5
+```
+
+The difference can be calculated in hours (`diffInHours`), minutes (`diffInMinutes`) and seconds (`diffInSeconds`).
 
 #### Duration
 
