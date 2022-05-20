@@ -33,13 +33,6 @@ class TimeTest extends TestCase
         $this->assertSame($seconds, $time->getSeconds());
     }
 
-    public function testSetHoursException(): void
-    {
-        $this->expectException(TimeException::class);
-
-        $time = new Time(30);
-    }
-
     public function testSetMinutesException(): void
     {
         $this->expectException(TimeException::class);
