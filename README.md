@@ -99,18 +99,17 @@ $time->roundDown(15, true); // 02:21:30
 #### Presentation
 
 The `Time` object can be presented as a string with the `toString` method or just casting the object to a
-string `(string)$time`. This will output: `14:30:15`. You are also able to show the time without seconds when using the
-`format` method.
+string `(string)$time`. This will output: `14:30:15`.
 
 There are also two other presentations available, the `numerical` and `readable`:
 
 ```php
 $time = new Time(12, 30, 45);
-$time->present()->asNumericalTime(); // 12:50
-$time->present()->asNumericalTime(true); // 12:50:75
+$time->toNumericalTime(); // 12:50
+$time->toNumericalTime(true); // 12:50:75
 
-$time->present()->asReadableTime(); // 12:30
-$time->present()->asReadableTime(); // 12:30:45
+$time->toReadableTime(); // 12:30
+$time->toReadableTime(true); // 12:30:45
 ```
 
 ### Time collection

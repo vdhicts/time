@@ -5,7 +5,6 @@ namespace Vdhicts\Time\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use Vdhicts\Time\Exceptions\TimeException;
 use Vdhicts\Time\Time;
-use Vdhicts\Time\TimePresenter;
 
 class TimeTest extends TestCase
 {
@@ -161,12 +160,19 @@ class TimeTest extends TestCase
         $this->assertSame(12600, $timeStart->diffInSeconds($timeEnd));
     }
 
-    public function testPresenter(): void
+    public function testNumerical(): void
     {
-        $time = new Time(2, 30, 45);
+        $time = new Time(10, 30, 45);
 
-        $presenter = $time->present();
+        $this->assertSame('10:50:75', $time->toNumericalTime(true));
+        $this->assertSame('10:50', $time->toNumericalTime());
+    }
 
-        $this->assertInstanceOf(TimePresenter::class, $presenter);
+    public function testReadable(): void
+    {
+        $time = new Time(10, 30, 45);
+
+        $this->assertSame('10:30:45', $time->toReadableTime(true));
+        $this->assertSame('10:30', $time->toReadableTime());
     }
 }
