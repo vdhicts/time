@@ -9,4 +9,5 @@ interface TimeRangeInterface
 
     public function inRange(TimeInterface $time): bool;
     public function isOverlapping(TimeRangeInterface $timeRange): bool;
+    public function getRangeDuration(): TimeInterface;
 }

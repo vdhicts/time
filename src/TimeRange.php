@@ -50,4 +50,14 @@ class TimeRange implements Contracts\TimeRangeInterface
 
         return ($startIsBeforeOrEqualToEnd && $endIsAfterOrEqualToStart);
     }
+
+    /**
+     * Returns the time object for the duration of the range.
+     */
+    public function getRangeDuration(): Contracts\TimeInterface
+    {
+        return $this
+            ->start
+            ->diff($this->end);
+    }
 }

@@ -3,10 +3,14 @@
 namespace Vdhicts\Time\Traits;
 
 use Vdhicts\Time\Contracts\TimeInterface;
+use Vdhicts\Time\Exceptions\TimeException;
 use Vdhicts\Time\TimeFactory;
 
 trait Difference
 {
+    /**
+     * @throws TimeException
+     */
     public function diff(TimeInterface $time): TimeInterface
     {
         return TimeFactory::createFromDurationInSeconds(abs($this->diffInSeconds($time)));

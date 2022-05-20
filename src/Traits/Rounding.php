@@ -4,7 +4,6 @@ namespace Vdhicts\Time\Traits;
 
 use Vdhicts\Time\Contracts\TimeInterface;
 use Vdhicts\Time\Exceptions\TimeException;
-use Vdhicts\Time\Time;
 use Vdhicts\Time\TimeFactory;
 
 trait Rounding

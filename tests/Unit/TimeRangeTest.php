@@ -65,4 +65,18 @@ class TimeRangeTest extends TestCase
         $this->assertFalse($firstTimeRange->isOverlapping($thirdTimeRange));
         $this->assertTrue($secondTimeRange->isOverlapping($thirdTimeRange));
     }
+
+    public function testRangeDuration(): void
+    {
+        $startTime = new Time(12, 30, 30);
+        $endTime = new Time(14, 45, 15);
+        $timeRange = new TimeRange($startTime, $endTime);
+
+        $duration = $timeRange->getRangeDuration();
+
+        $this->assertInstanceOf(Time::class, $duration);
+        $this->assertSame(2, $duration->getHours());
+        $this->assertSame(14, $duration->getMinutes());
+        $this->assertSame(45, $duration->getSeconds());
+    }
 }

@@ -21,10 +21,6 @@ interface TimeInterface
     public function isAfter(TimeInterface $time): bool;
     public function isAfterOrEqualTo(TimeInterface $time): bool;
 
-    // Conversion
-    public function format(bool $showSeconds = false): string;
-    public function toString(): string;
-
     // Difference
     public function diff(TimeInterface $time): TimeInterface;
     public function diffInSeconds(TimeInterface $time): int;
@@ -41,4 +37,8 @@ interface TimeInterface
     public function roundNatural(int $precision = 5, bool $roundSeconds = false): TimeInterface;
     public function roundDown(int $precision = 5, bool $roundSeconds = false): TimeInterface;
 
+    // Presentation
+    public function toNumericalTime(bool $showSeconds = false): string;
+    public function toReadableTime(bool $showSeconds = false): string;
+    public function toString(): string;
 }
