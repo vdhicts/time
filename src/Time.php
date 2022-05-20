@@ -39,15 +39,8 @@ class Time implements TimeInterface
         return $this->hours;
     }
 
-    /**
-     * @throws TimeException
-     */
     public function setHours(int $hours): self
     {
-        if ($hours < 0 || $hours > 23) {
-            throw TimeException::invalidHours($hours);
-        }
-
         $this->hours = $hours;
 
         return $this;

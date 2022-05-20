@@ -101,7 +101,7 @@ $time->roundDown(15, true); // 02:21:30
 The `Time` object can be presented as a string with the `toString` method or just casting the object to a
 string `(string)$time`. This will output: `14:30:15`.
 
-There are also two other presentations available, the `numerical` and `readable`:
+There are also two other presentations available, the `toNumericalTime` and `toReadableTime`:
 
 ```php
 $time = new Time(12, 30, 45);
