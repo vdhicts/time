@@ -5,6 +5,7 @@ namespace Vdhicts\Time\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use Vdhicts\Time\Exceptions\TimeException;
 use Vdhicts\Time\Time;
+use Vdhicts\Time\TimePresenter;
 
 class TimeTest extends TestCase
 {
@@ -84,18 +85,6 @@ class TimeTest extends TestCase
         $this->assertSame('14:30:15', (string)$time);
     }
 
-    public function testFormat(): void
-    {
-        $hours = 14;
-        $minutes = 30;
-        $seconds = 15;
-
-        $time = new Time($hours, $minutes, $seconds);
-
-        $this->assertSame(sprintf('%s:%s', $hours, $minutes), $time->format());
-        $this->assertSame(sprintf('%s:%s:%s', $hours, $minutes, $seconds), $time->format(true));
-    }
-
     public function testClone(): void
     {
         $hours = 14;
@@ -130,27 +119,27 @@ class TimeTest extends TestCase
     {
         $time = new Time(2, 29, 45);
 
-        $this->assertSame('02:30:00', $time->roundNatural()->toString());
-        $this->assertSame('02:30:00', $time->roundUp()->toString());
-        $this->assertSame('02:25:00', $time->roundDown()->toString());
+        $this->assertSame('2:30:00', $time->roundNatural()->toString());
+        $this->assertSame('2:30:00', $time->roundUp()->toString());
+        $this->assertSame('2:25:00', $time->roundDown()->toString());
 
         $time = new Time(2, 21, 45);
 
-        $this->assertSame('02:20:00', $time->roundNatural(10)->toString());
-        $this->assertSame('02:30:00', $time->roundUp(10)->toString());
-        $this->assertSame('02:20:00', $time->roundDown(10)->toString());
+        $this->assertSame('2:20:00', $time->roundNatural(10)->toString());
+        $this->assertSame('2:30:00', $time->roundUp(10)->toString());
+        $this->assertSame('2:20:00', $time->roundDown(10)->toString());
 
         $time = new Time(2, 21, 59);
 
-        $this->assertSame('02:22:00', $time->roundNatural(5, true)->toString());
-        $this->assertSame('02:22:00', $time->roundUp(5, true)->toString());
-        $this->assertSame('02:21:55', $time->roundDown(5, true)->toString());
+        $this->assertSame('2:22:00', $time->roundNatural(5, true)->toString());
+        $this->assertSame('2:22:00', $time->roundUp(5, true)->toString());
+        $this->assertSame('2:21:55', $time->roundDown(5, true)->toString());
 
         $time = new Time(2, 21, 33);
 
-        $this->assertSame('02:21:30', $time->roundNatural(15, true)->toString());
-        $this->assertSame('02:21:45', $time->roundUp(15, true)->toString());
-        $this->assertSame('02:21:30', $time->roundDown(15, true)->toString());
+        $this->assertSame('2:21:30', $time->roundNatural(15, true)->toString());
+        $this->assertSame('2:21:45', $time->roundUp(15, true)->toString());
+        $this->assertSame('2:21:30', $time->roundDown(15, true)->toString());
     }
 
     public function testDifference(): void
@@ -170,5 +159,14 @@ class TimeTest extends TestCase
         $this->assertSame(210, (int)$timeStart->diffInMinutes($timeEnd));
         $this->assertSame(-12600, $timeEnd->diffInSeconds($timeStart));
         $this->assertSame(12600, $timeStart->diffInSeconds($timeEnd));
+    }
+
+    public function testPresenter(): void
+    {
+        $time = new Time(2, 30, 45);
+
+        $presenter = $time->present();
+
+        $this->assertInstanceOf(TimePresenter::class, $presenter);
     }
 }

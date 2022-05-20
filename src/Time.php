@@ -6,18 +6,18 @@ use Vdhicts\Time\Contracts\TimeInterface;
 use Vdhicts\Time\Exceptions\TimeException;
 use Vdhicts\Time\Traits\Cloneable;
 use Vdhicts\Time\Traits\Comparison;
-use Vdhicts\Time\Traits\Conversion;
 use Vdhicts\Time\Traits\Difference;
 use Vdhicts\Time\Traits\Duration;
+use Vdhicts\Time\Traits\Presentable;
 use Vdhicts\Time\Traits\Rounding;
 
 class Time implements TimeInterface
 {
     use Cloneable;
     use Comparison;
-    use Conversion;
     use Difference;
     use Duration;
+    use Presentable;
     use Rounding;
 
     private int $hours = 0;

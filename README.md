@@ -38,12 +38,6 @@ $time->isAfter(Time $anotherTime);
 $time->isAfterOrEqualTo(Time $anotherTime);
 ```
 
-#### Conversion
-
-The `Time` object can be converted to a string with the `toString` method or just casting the object to a 
-string `(string)$time`. This will output: `14:30:15`. You are also able to show the time without seconds when using the
-`format` method.
-
 #### Difference
 
 The time object can also be used to calculate the difference between time objects:
@@ -102,6 +96,23 @@ $time->roundUp(15, true); // 02:21:45
 $time->roundDown(15, true); // 02:21:30
 ```
 
+#### Presentation
+
+The `Time` object can be presented as a string with the `toString` method or just casting the object to a
+string `(string)$time`. This will output: `14:30:15`. You are also able to show the time without seconds when using the
+`format` method.
+
+There are also two other presentations available, the `numerical` and `readable`:
+
+```php
+$time = new Time(12, 30, 45);
+$time->present()->asNumericalTime(); // 12:50
+$time->present()->asNumericalTime(true); // 12:50:75
+
+$time->present()->asReadableTime(); // 12:30
+$time->present()->asReadableTime(); // 12:30:45
+```
+
 ### Time collection
 
 `Time` objects can be collected in a `TimeCollection`. The `TimeCollection` ca be initiated with:
@@ -119,6 +130,12 @@ A `TimeRange` object contains two `Time` objects, a start and end time. The `Tim
 
 ```php
 $timeRange = new TimeRange($time, $anotherTime);
+```
+
+To get the duration of the range, you can get the `Time` object as duration with:
+
+```php
+$timeRange->getRangeDuration();
 ```
 
 #### Comparison
