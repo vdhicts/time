@@ -66,7 +66,7 @@ class TimeRangeTest extends TestCase
         $this->assertTrue($secondTimeRange->isOverlapping($thirdTimeRange));
     }
 
-    public function testRangeDuration()
+    public function testRangeDuration(): void
     {
         $startTime = new Time(12, 30, 30);
         $endTime = new Time(14, 45, 15);
