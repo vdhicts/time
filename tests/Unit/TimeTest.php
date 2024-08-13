@@ -37,14 +37,14 @@ class TimeTest extends TestCase
     {
         $this->expectException(TimeException::class);
 
-        $time = new Time(14, 89);
+        new Time(14, 89);
     }
 
     public function testSetSecondsException(): void
     {
         $this->expectException(TimeException::class);
 
-        $time = new Time(14, 30, 89);
+        new Time(14, 30, 89);
     }
 
     public function testComparison(): void
@@ -74,7 +74,7 @@ class TimeTest extends TestCase
         $time = new Time($hours, $minutes, $seconds);
 
         $this->assertSame('14:30:15', $time->toString());
-        $this->assertSame('14:30:15', (string)$time);
+        $this->assertSame('14:30:15', (string) $time);
     }
 
     public function testClone(): void
@@ -147,8 +147,8 @@ class TimeTest extends TestCase
 
         $this->assertSame(-3.5, $timeEnd->diffInHours($timeStart));
         $this->assertSame(3.5, $timeStart->diffInHours($timeEnd));
-        $this->assertSame(-210, (int)$timeEnd->diffInMinutes($timeStart));
-        $this->assertSame(210, (int)$timeStart->diffInMinutes($timeEnd));
+        $this->assertSame(-210, (int) $timeEnd->diffInMinutes($timeStart));
+        $this->assertSame(210, (int) $timeStart->diffInMinutes($timeEnd));
         $this->assertSame(-12600, $timeEnd->diffInSeconds($timeStart));
         $this->assertSame(12600, $timeStart->diffInSeconds($timeEnd));
     }

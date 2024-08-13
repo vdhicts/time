@@ -17,14 +17,14 @@ trait Rounding
 
         return match ($method) {
             'up' => $roundSeconds
-                ? TimeFactory::createFromDurationInSeconds((int)ceil($seconds / $precision) * $precision)
-                : TimeFactory::createFromDurationInSeconds((int)ceil($seconds / ($precision * 60)) * ($precision * 60)),
+                ? TimeFactory::createFromDurationInSeconds((int) ceil($seconds / $precision) * $precision)
+                : TimeFactory::createFromDurationInSeconds((int) ceil($seconds / ($precision * 60)) * ($precision * 60)),
             'down' => $roundSeconds
-                ? TimeFactory::createFromDurationInSeconds((int)floor($seconds / $precision) * $precision)
-                : TimeFactory::createFromDurationInSeconds((int)floor($seconds / ($precision * 60)) * ($precision * 60)),
+                ? TimeFactory::createFromDurationInSeconds((int) floor($seconds / $precision) * $precision)
+                : TimeFactory::createFromDurationInSeconds((int) floor($seconds / ($precision * 60)) * ($precision * 60)),
             default => $roundSeconds
-                ? TimeFactory::createFromDurationInSeconds((int)round($seconds / $precision) * $precision)
-                : TimeFactory::createFromDurationInSeconds((int)round($seconds / ($precision * 60)) * ($precision * 60)),
+                ? TimeFactory::createFromDurationInSeconds((int) round($seconds / $precision) * $precision)
+                : TimeFactory::createFromDurationInSeconds((int) round($seconds / ($precision * 60)) * ($precision * 60)),
         };
     }
 
