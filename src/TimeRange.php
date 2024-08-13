@@ -2,25 +2,23 @@
 
 namespace Vdhicts\Time;
 
-use Vdhicts\Time\Contracts;
+use Vdhicts\Time\Contracts\TimeInterface;
+use Vdhicts\Time\Contracts\TimeRangeInterface;
 
-class TimeRange implements Contracts\TimeRangeInterface
+class TimeRange implements TimeRangeInterface
 {
-    private Contracts\TimeInterface $start;
-    private Contracts\TimeInterface $end;
-
-    public function __construct(Contracts\TimeInterface $start, Contracts\TimeInterface $end)
-    {
-        $this->start = $start;
-        $this->end = $end;
+    public function __construct(
+        private readonly TimeInterface $start,
+        private readonly TimeInterface $end,
+    ) {
     }
 
-    public function getStart(): Contracts\TimeInterface
+    public function getStart(): TimeInterface
     {
         return $this->start;
     }
 
-    public function getEnd(): Contracts\TimeInterface
+    public function getEnd(): TimeInterface
     {
         return $this->end;
     }
@@ -28,7 +26,7 @@ class TimeRange implements Contracts\TimeRangeInterface
     /**
      * Determines if the time is in between or equals to the start and end of this time range.
      */
-    public function inRange(Contracts\TimeInterface $time): bool
+    public function inRange(TimeInterface $time): bool
     {
         $startIsAfterOrEqualTo = $time->isAfterOrEqualTo($this->start);
         $endIsBeforeOrEqualTo = $time->isBeforeOrEqualTo($this->end);
@@ -39,7 +37,7 @@ class TimeRange implements Contracts\TimeRangeInterface
     /**
      * Determine if the time ranges are overlapping each other.
      */
-    public function isOverlapping(Contracts\TimeRangeInterface $timeRange): bool
+    public function isOverlapping(TimeRangeInterface $timeRange): bool
     {
         $startIsBeforeOrEqualToEnd = $this
             ->getStart()
@@ -54,7 +52,7 @@ class TimeRange implements Contracts\TimeRangeInterface
     /**
      * Returns the time object for the duration of the range.
      */
-    public function getRangeDuration(): Contracts\TimeInterface
+    public function getRangeDuration(): TimeInterface
     {
         return $this
             ->start

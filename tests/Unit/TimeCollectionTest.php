@@ -37,10 +37,10 @@ class TimeCollectionTest extends TestCase
 
         $times = [$time, $anotherTime];
 
-        $collection = new TimeCollection($times);
+        $timeCollection = new TimeCollection($times);
 
-        $this->assertTrue($collection->contains($time));
-        $this->assertTrue($collection->contains($anotherTime));
-        $this->assertFalse($collection->contains($specialTime));
+        $this->assertTrue($timeCollection->contains($time));
+        $this->assertTrue($timeCollection->contains($anotherTime));
+        $this->assertFalse($timeCollection->contains($specialTime));
     }
 }

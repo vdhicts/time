@@ -18,7 +18,11 @@ trait Comparison
 
     public function isBeforeOrEqualTo(TimeInterface $time): bool
     {
-        return $this->isEqualTo($time) || $this->isBefore($time);
+        if ($this->isEqualTo($time)) {
+            return true;
+        }
+
+        return $this->isBefore($time);
     }
 
     public function isAfter(TimeInterface $time): bool
@@ -28,6 +32,10 @@ trait Comparison
 
     public function isAfterOrEqualTo(TimeInterface $time): bool
     {
-        return $this->isEqualTo($time) || $this->isAfter($time);
+        if ($this->isEqualTo($time)) {
+            return true;
+        }
+
+        return $this->isAfter($time);
     }
 }

@@ -1,11 +1,11 @@
 # Time
 
 This package aims to make working with times (as in date, ranges and/or duration) easier. It contains a time 
-value-object, ranges, duration, rounding, etc.
+value-object, parser, ranges, duration, rounding, etc.
 
 ## Requirements
 
-This package requires PHP 8.0 or higher.
+This package requires PHP 8.1 or higher.
 
 ## Installation
 
@@ -24,6 +24,18 @@ The `Time` object can be initiated with:
 
 ```php
 $time = new Time(14, 30, 15);
+```
+
+#### Building from input
+
+To build the `Time` object from several different inputs, you can use the following methods:
+
+```php
+TimeFactory::createFromString('14:30:15'); // Time object with 14 hours, 30 minutes and 15 seconds
+TimeFactory::createFromDateTime(new \DateTime('2023-01-01 14:30:15')); // Time object with 14 hours, 30 minutes and 15 seconds
+TimeFactory::createFromTimestamp(1640000000); // Time object with 11 hours, 33 minutes and 20 seconds
+TimeFactory::createFromDurationInSeconds(9000); // Time object with 2 hours and 30 minutes
+TimeFactory::createFromDurationInMinutes(150); // Time object with 2 hours and 30 minutes
 ```
 
 #### Comparison
@@ -167,8 +179,8 @@ When you want a code coverage report which will be generated in the build/report
 
 ## Contribution
 
-Any contribution is welcome, but it should meet the PSR-12 standard and please create one pull request per feature/bug. 
-In exchange, you will be credited as contributor on this page.
+Any contribution is welcome, but it should meet the [PER 2.0 code style](https://www.php-fig.org/per/coding-style/) and 
+please create one pull request per feature/bug. In exchange, you will be credited as contributor.
 
 ## Security
 
@@ -178,8 +190,3 @@ instead of using the issue tracker.
 ## License
 
 This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-
-## About vdhicts
-
-[Vdhicts](https://www.vdhicts.nl) is the name of my personal company. Vdhicts develops and implements IT solutions for
-businesses and educational institutions.

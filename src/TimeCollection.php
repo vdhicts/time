@@ -2,24 +2,25 @@
 
 namespace Vdhicts\Time;
 
-use Vdhicts\Time\Contracts;
+use Vdhicts\Time\Contracts\TimeCollectionInterface;
+use Vdhicts\Time\Contracts\TimeInterface;
 
-class TimeCollection implements Contracts\TimeCollectionInterface
+class TimeCollection implements TimeCollectionInterface
 {
     /**
-     * @var Contracts\TimeInterface[]
+     * @var TimeInterface[]
      */
     private array $times = [];
 
     /**
-     * @param Contracts\TimeInterface[] $times
+     * @param TimeInterface[] $times
      */
     public function __construct(array $times = [])
     {
         $this->set($times);
     }
 
-    public function add(Contracts\TimeInterface $time): Contracts\TimeCollectionInterface
+    public function add(TimeInterface $time): TimeCollectionInterface
     {
         $this->times[] = $time;
 
@@ -29,7 +30,7 @@ class TimeCollection implements Contracts\TimeCollectionInterface
     /*
      * @inheritDoc
      */
-    public function set(array $times): Contracts\TimeCollectionInterface
+    public function set(array $times): TimeCollectionInterface
     {
         $this->times = [];
 
@@ -40,15 +41,13 @@ class TimeCollection implements Contracts\TimeCollectionInterface
         return $this;
     }
 
-    public function contains(Contracts\TimeInterface $time): bool
+    public function contains(TimeInterface $time): bool
     {
         $times = array_map(
-            function (Contracts\TimeInterface $time) {
-                return $time->toString();
-            },
-            $this->times
+            fn(TimeInterface $time): string => $time->toString(),
+            $this->times,
         );
 
-        return in_array($time->toString(), $times);
+        return in_array($time->toString(), $times, true);
     }
 }

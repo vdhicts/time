@@ -12,7 +12,7 @@ class TimeFactory
     public static function createFromString(string $value): Time
     {
         $timestamp = strtotime($value);
-        if (! $timestamp) {
+        if ($timestamp === 0 || $timestamp === false) {
             throw TimeException::unableToCreateFromString($value);
         }
 
@@ -29,9 +29,9 @@ class TimeFactory
         $seconds = date('s', $timestamp);
 
         return (new Time())
-            ->setHours((int)$hours)
-            ->setMinutes((int)$minutes)
-            ->setSeconds((int)$seconds);
+            ->setHours((int) $hours)
+            ->setMinutes((int) $minutes)
+            ->setSeconds((int) $seconds);
     }
 
     /**
@@ -41,9 +41,9 @@ class TimeFactory
     {
         $hours = floor($seconds / 3600);
         $minutes = floor($seconds / 60) % 60;
-        $seconds = $seconds % 60;
+        $seconds %= 60;
 
-        return new Time((int)$hours, $minutes, $seconds);
+        return new Time((int) $hours, $minutes, $seconds);
     }
 
     /**
@@ -52,8 +52,8 @@ class TimeFactory
     public static function createFromDurationInMinutes(int $minutes): Time
     {
         $hours = floor($minutes / 60);
-        $minutes = $minutes % 60;
+        $minutes %= 60;
 
-        return new Time((int)$hours, $minutes, 0);
+        return new Time((int) $hours, $minutes, 0);
     }
 }
